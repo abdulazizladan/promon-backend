@@ -1,0 +1,4 @@
+{
+    "migrations": ["dist/migration/*{.ts,.js}"],
+    "cli": { "migrationsDir": "src/migration"}
+}
