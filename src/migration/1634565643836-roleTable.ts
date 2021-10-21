@@ -1,4 +1,3 @@
-import { table } from "console";
 import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
 export class roleTable1634565643836 implements MigrationInterface {

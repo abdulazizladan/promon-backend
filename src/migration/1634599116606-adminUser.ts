@@ -1,5 +1,5 @@
-import { User } from "src/users/entity/user.entity";
-import { Scope } from "src/users/type/scope.type";
+import { User } from "../user/entity/user.entity";
+import { Scope } from "../user/type/scope.type";
 import {MigrationInterface, QueryRunner} from "typeorm";
 
 export class adminUser1634599116606 implements MigrationInterface {
