@@ -70,14 +70,28 @@ export class userTable1634565648333 implements MigrationInterface {
                     name: 'created_at',
                     type: 'timestamp',
                     default: 'now()'
+                },
+                {
+                    name: 'updated_at',
+                    type: 'timestamp',
+                    default: 'now()'
+                },
+                {
+                    name: 'created_by',
+                    type: 'int',
+                    isNullable: true
+                },
+                {
+                    name: 'last_updated_by',
+                    type: 'int',
+                    isNullable: true
                 }
             ],
             foreignKeys: [
                 {
                     columnNames: ['role_name'],
                     referencedColumnNames: ['name'],
-                    referencedTableName: 'role',
-                    onDelete: ''
+                    referencedTableName: 'role'
                 }
             ],
             indices: [
@@ -90,6 +104,6 @@ export class userTable1634565648333 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        queryRunner.dropTable('user');
     }
-
 }

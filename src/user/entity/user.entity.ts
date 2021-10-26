@@ -1,4 +1,5 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, 
+  PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Scope } from "../type/scope.type";
 import { Role } from "./role.entity";
 
@@ -35,6 +36,15 @@ export class User {
   @JoinColumn({name: 'role_name'})
   role: Role
 
-  @Column({name: 'created_at', default: Date.now})
+  @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
+
+  @UpdateDateColumn({name: 'updated_at'})
+  updatedAt: Date;
+
+  @Column({name: 'created_by'})
+  createdBy: number;
+
+  @Column({name: 'last_updated_by'})
+  lastUpdatedBy: number;
 }

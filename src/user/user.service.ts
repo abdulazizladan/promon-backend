@@ -5,7 +5,7 @@ import { hashSync } from 'bcrypt';
 import { User } from './entity/user.entity';
 
 @Injectable()
-export class UsersService {
+export class UserService {
 
   constructor(
     @InjectRepository(User) private readonly UserRepository: Repository<User>

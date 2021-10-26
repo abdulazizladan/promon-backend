@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from "typeorm";
 import { Permission } from "./permission.entity";
 
 @Entity()
@@ -10,6 +10,6 @@ export class Role {
     @JoinTable({name: 'role-permission'})
     permissions: Permission[];
 
-    @Column({name: 'created_at', default: Date.now})
+    @CreateDateColumn({name: 'created_at'})
     createdAt: Date
 }
