@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, Query, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse, 
-    ApiNotFoundResponse, ApiOkResponse, ApiQuery, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { AuthUser, User } from 'src/auth/user.decorator';
+    ApiNotFoundResponse, ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { AuthUser, User } from '../auth/user.decorator';
 import { ProjectService } from './project.service';
 import { CreateProjectDTO } from './value/create-project.dto';
+import { UpdateProjectDTO } from './value/update-project.dto';
 
 @ApiBearerAuth()
 @ApiTags('Projects')
@@ -36,6 +37,13 @@ export class ProjectController {
     @ApiCreatedResponse({description: 'successfully created a project'})
     async create(@User() user: AuthUser, @Body() dto: CreateProjectDTO) {
         return this.projectService.create(user.id, dto);
+    }
+
+    @Put(':id')
+    @UsePipes(new ValidationPipe({transform: true, whitelist: true}))
+    @ApiOkResponse({description: 'successfully updated the project'})
+    async update(@User() user: AuthUser,@Param('id') id: string, @Body() dto: UpdateProjectDTO) {
+        return this.projectService.update(user.id, id, dto);
     }
 
     @Delete(':id')

@@ -3,8 +3,8 @@ import { ProjectService } from './project.service';
 import { ProjectController } from './project.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Project } from './entity/Project';
-import { AuthModule } from 'src/auth/auth.module';
-import { UsersModule } from 'src/user/user.module';
+import { AuthModule } from '../auth/auth.module';
+import { UsersModule } from '../user/user.module';
 
 @Module({
   providers: [ProjectService],
