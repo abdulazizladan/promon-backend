@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from '../user/user.module';
+import { UserModule } from '../user/user.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
@@ -20,7 +20,7 @@ import { JWTStrategy } from './jwt.strategy';
     }
   ],
   imports: [
-    UsersModule,
+    UserModule,
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.registerAsync({
       imports: [ConfigService],

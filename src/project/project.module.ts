@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { ProjectController } from './project.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Project } from './entity/Project';
+import { Project } from './entity/Project.entity';
 import { AuthModule } from '../auth/auth.module';
-import { UsersModule } from '../user/user.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   providers: [ProjectService],
@@ -12,7 +12,7 @@ import { UsersModule } from '../user/user.module';
   imports: [
     TypeOrmModule.forFeature([Project]),
     AuthModule,
-    UsersModule
+    UserModule
   ]
 })
 export class ProjectModule {}

@@ -1,52 +1,34 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class project1635177067414 implements MigrationInterface {
+export class contractor1635412959635 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         queryRunner.createTable(new Table({
-            name: 'project',
+            name: 'contractor',
             columns: [
                 {
                     name: 'id',
-                    type: 'varchar',
-                    length: '36',
+                    type: 'int',
+                    isGenerated: true,
+                    generationStrategy: 'increment',
                     isPrimary: true
                 },
                 {
-                    name: 'title',
+                    name: 'name',
                     type: 'varchar',
                     length: '128',
                     isNullable: false
                 },
                 {
-                    name: 'description',
-                    type: 'text',
-                    isNullable: true
-                },
-                {
-                    name: 'beneficiary',
+                    name: 'rc_number',
                     type: 'varchar',
                     length: '64',
-                    isNullable: false
+                    isNullable: false,
+                    isUnique: true
                 },
                 {
-                    name: 'budget',
-                    type: 'decimal',
-                    precision: 15,
-                    scale: 2,
-                    default: '0'
-                },
-                {
-                    name: 'state',
-                    type: 'varchar',
-                    length: '64',
-                    isNullable: true
-                },
-                {
-                    name: 'lga',
-                    type: 'varchar',
-                    length: '64',
-                    isNullable: true
+                    name: 'contacts',
+                    type: 'jsonb',
                 },
                 {
                     name: 'created_at',
@@ -85,7 +67,7 @@ export class project1635177067414 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.dropTable('project');
+        queryRunner.dropTable('contractor');
     }
 
 }

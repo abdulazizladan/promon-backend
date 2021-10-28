@@ -12,4 +12,4 @@ import { UserService } from './user.service';
     TypeOrmModule.forFeature([Permission, Role, User])
   ]
 })
-export class UsersModule {}
+export class UserModule {}
