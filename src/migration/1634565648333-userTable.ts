@@ -45,6 +45,12 @@ export class userTable1634565648333 implements MigrationInterface {
                     isNullable: false
                 },
                 {
+                    name: 'phone',
+                    type: 'varchar',
+                    length: '64',
+                    isNullable: true
+                },
+                {
                     name: 'is_blocked',
                     type: 'boolean',
                     default: false,

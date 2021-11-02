@@ -27,8 +27,19 @@ export class contractor1635412959635 implements MigrationInterface {
                     isUnique: true
                 },
                 {
+                    name: 'website',
+                    type: 'varchar',
+                    length: '128',
+                    isNullable: true
+                },
+                {
                     name: 'contacts',
                     type: 'jsonb',
+                },
+                {
+                    name: 'user_id',
+                    type: 'int',
+                    isNullable: false
                 },
                 {
                     name: 'created_at',
@@ -52,6 +63,11 @@ export class contractor1635412959635 implements MigrationInterface {
                 }
             ],
             foreignKeys: [
+                {
+                    columnNames: ['user_id'],
+                    referencedColumnNames: ['id'],
+                    referencedTableName: 'user'
+                },
                 {
                     columnNames: ['created_by'],
                     referencedColumnNames: ['id'],

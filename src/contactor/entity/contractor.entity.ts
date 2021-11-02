@@ -1,11 +1,12 @@
 import { User } from '../../user/entity/user.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, 
+  PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Contact } from '../type/contact.type';
 
 @Entity()
 export class Contractor {
   @PrimaryGeneratedColumn({name: 'id'})
-  id: number;
+  id?: number;
 
   @Column({name: 'name', nullable: false})
   name: string;
@@ -14,7 +15,14 @@ export class Contractor {
   rcNumber: string;
 
   @Column({name: 'contacts', type: 'jsonb', array: true})
-  contacts: Contact[];
+  contacts?: Contact[];
+
+  @OneToOne(type => User)
+  @JoinColumn({name: 'user_id'})
+  user: User;
+
+  @Column({name: 'website', nullable: true})
+  website?: string;
 
   @CreateDateColumn({name: 'created_at'})
   createdAt?: Date;

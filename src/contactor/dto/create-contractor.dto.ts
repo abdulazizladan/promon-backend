@@ -1,19 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsNotEmpty } from 'class-validator';
-import { Contact } from '../type/contact.type';
+import { Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
 import { ContactDTO } from './contact.dto';
+import { ContractorDTO } from './contractor.dto';
+import { UserDTO } from './user.dto';
 
 export class CreateContractorDTO {
-  @IsNotEmpty()
-  @ApiProperty()
-  name: string;
+  @ValidateNested()
+  @Type(() => ContractorDTO)
+  @ApiProperty({type: ContractorDTO})
+  contractor: ContractorDTO;
 
-  @IsNotEmpty()
-  @ApiProperty()
-  rcNumber: string;
-
-  @IsArray()
-  @IsNotEmpty()
-  @ApiProperty({isArray: true, type: ContactDTO})
-  contacts: ContactDTO[];
+  @ValidateNested()
+  @Type(() => UserDTO)
+  @ApiProperty({type: UserDTO})
+  user: UserDTO;
 }

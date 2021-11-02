@@ -1,10 +1,13 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Scope } from '../user/type/scope.type';
 import { UserService } from 'src/user/user.service';
 import { ILike, Repository } from 'typeorm';
 import { CreateContractorDTO } from './dto/create-contractor.dto';
 import { UpdateContractorDTO } from './dto/update.contracor.dto';
 import { Contractor } from './entity/contractor.entity';
+import { User } from '../user/entity/user.entity';
+import { Contact } from './type/contact.type';
 
 @Injectable()
 export class ContractorService {
@@ -23,10 +26,16 @@ export class ContractorService {
   }
 
   async create(userId: number, dto: CreateContractorDTO): Promise<Contractor> {
-    const user = await this.userService.findById(userId);
-    if (await this.contractorRepository.count({rcNumber: dto.rcNumber}))
+    const createdBy = await this.userService.findById(userId);
+    const contact: Contact = {firstName: dto.user.firstName, lastName: dto.user.lastName, 
+      email: dto.user.lastName, phone: [dto.user.phone]};
+
+    const user: User = await this.userService.save({...dto.user, createdBy: 
+      createdBy.id, scope: Scope.CONTRACTOR});
+
+    if (await this.contractorRepository.count({rcNumber: dto.contractor.rcNumber}))
       throw new ConflictException('rc number already registered');
-    return this.contractorRepository.save({...dto, createdBy: user});
+    return this.contractorRepository.save({...dto.contractor, contacts: [contact], createdBy, user});
   }
 
   async findById(id: number): Promise<Contractor> {
