@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsOptional } from "class-validator";
 
 export class UpdateProjectDTO {
 
@@ -22,9 +22,15 @@ export class UpdateProjectDTO {
   @ApiProperty({required: false})
   budget?: number;
 
+  @IsOptional()
   @ApiProperty({required: false})
   state?: string;
 
+  @IsOptional()
   @ApiProperty({required: false})
   lga?: string;
+
+  @IsOptional()
+  @ApiProperty({required: false})
+  streetAddress?: string;
 }

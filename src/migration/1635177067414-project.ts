@@ -43,6 +43,12 @@ export class project1635177067414 implements MigrationInterface {
                     isNullable: true
                 },
                 {
+                    name: 'street_address',
+                    type: 'varchar',
+                    length: '512',
+                    isNullable: true
+                },
+                {
                     name: 'lga',
                     type: 'varchar',
                     length: '64',

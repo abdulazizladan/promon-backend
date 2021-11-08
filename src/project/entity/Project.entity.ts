@@ -25,6 +25,9 @@ export class Project {
   @Column({name: 'lga'})
   lga?: string;
 
+  @Column({name: 'street_address'})
+  streetAddress?: string;
+
   @CreateDateColumn({name: 'created_at'})
   createdAt?: Date;
 

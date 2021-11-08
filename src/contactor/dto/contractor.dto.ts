@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsNotEmpty } from "class-validator";
-import { ContactDTO } from "./contact.dto";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class ContractorDTO {
   @IsNotEmpty()
@@ -11,6 +10,7 @@ export class ContractorDTO {
   @ApiProperty()
   rcNumber: string;
 
-  @ApiProperty()
-  website: string;
+  @IsOptional()
+  @ApiProperty({required: false})
+  website?: string;
 }

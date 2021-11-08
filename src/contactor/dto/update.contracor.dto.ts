@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
 import { ContactDTO } from './contact.dto';
 
 export class UpdateContractorDTO {
@@ -10,6 +10,10 @@ export class UpdateContractorDTO {
   @IsNotEmpty()
   @ApiProperty()
   rcNumber: string;
+
+  @IsOptional()
+  @ApiProperty({required: false})
+  website?: string;
 
   @IsArray()
   @IsNotEmpty()

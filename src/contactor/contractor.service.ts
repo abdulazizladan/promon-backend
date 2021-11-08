@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Scope } from '../user/type/scope.type';
 import { UserService } from 'src/user/user.service';
@@ -33,6 +33,7 @@ export class ContractorService {
     const user: User = await this.userService.save({...dto.user, createdBy: 
       createdBy.id, scope: Scope.CONTRACTOR});
 
+    Logger.log(dto.contractor.website);
     if (await this.contractorRepository.count({rcNumber: dto.contractor.rcNumber}))
       throw new ConflictException('rc number already registered');
     return this.contractorRepository.save({...dto.contractor, contacts: [contact], createdBy, user});
