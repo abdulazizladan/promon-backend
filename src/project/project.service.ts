@@ -29,14 +29,13 @@ export class ProjectService {
   }
 
   async findById(id: string): Promise<Project> {
-    const project = await this.projectRepository.findOne({id: id});
+    const project = await this.projectRepository.findOne({id});
     if (!project) throw new NotFoundException();
     return project;
   }
 
   async update(userId: number, id: string, dto: UpdateProjectDTO): Promise<Project> {
     const project = await this.findById(id);
-    if (!project) throw new NotFoundException();
 
     const user = await this.userService.findById(userId);
     this.projectRepository.update(id, {...dto, lastUpdatedBy: user});
@@ -45,7 +44,6 @@ export class ProjectService {
 
   async deleteById(id: string) {
     const project = await this.findById(id);
-    if (!project) throw new NotFoundException();
     await this.projectRepository.remove(project);
   }
 }

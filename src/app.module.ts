@@ -3,7 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './project/project.module';
-import { ContactorModule } from './contactor/contactor.module';
+import { ContractorModule } from './contactor/contractor.module';
+import { ContractModule } from './contract/contract.module';
+import { SupervisorModule } from './supervisor/supervisor.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { ContactorModule } from './contactor/contactor.module';
     }),
     AuthModule,
     ProjectModule,
-    ContactorModule],
+    ContractorModule,
+    ContractModule,
+    SupervisorModule],
 })
 export class AppModule {}

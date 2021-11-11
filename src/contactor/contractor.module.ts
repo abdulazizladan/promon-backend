@@ -9,10 +9,11 @@ import { Contractor } from './entity/contractor.entity';
 @Module({
   providers: [ContractorService],
   controllers: [ContractorController],
+  exports: [ContractorService],
   imports: [
+    TypeOrmModule.forFeature([Contractor]),
     UserModule,
-    AuthModule,
-    TypeOrmModule.forFeature([Contractor])
+    AuthModule
   ]
 })
-export class ContactorModule {}
+export class ContractorModule {}

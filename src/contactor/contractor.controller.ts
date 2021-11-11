@@ -6,7 +6,7 @@ import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse,
 import { AuthUser, User } from '../auth/user.decorator';
 import { ContractorService } from './contractor.service';
 import { CreateContractorDTO } from './dto/create-contractor.dto';
-import { UpdateContractorDTO } from './dto/update.contracor.dto';
+import { UpdateContractorDTO } from './dto/update-contractor.dto';
 
 @ApiBearerAuth()
 @ApiTags('contractors')
@@ -40,7 +40,7 @@ export class ContractorController {
 
   @Put(':id')
   @UsePipes(new ValidationPipe({transform: true, whitelist: true}))
-  @ApiOkResponse({description: 'successfully updated the project'})
+  @ApiOkResponse({description: 'successfully updated the contractor'})
   async update(@User() user: AuthUser,@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateContractorDTO) {
     return this.contractorService.update(user.id, id, dto);
   }

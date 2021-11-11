@@ -9,6 +9,7 @@ import { UserModule } from '../user/user.module';
 @Module({
   providers: [ProjectService],
   controllers: [ProjectController],
+  exports: [ProjectService],
   imports: [
     TypeOrmModule.forFeature([Project]),
     AuthModule,
